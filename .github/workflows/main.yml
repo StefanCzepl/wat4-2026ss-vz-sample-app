@@ -21,6 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
+          node-version: '22'
           cache: 'npm'
           cache-dependency-path: 'src/frontend/package-lock.json'
       - name: Install dependencies
@@ -42,8 +43,23 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
+          node-version: '22'
           cache: 'npm'
           cache-dependency-path: 'src/frontend/package-lock.json'
+      - name: Diagnose runner environment
+        run: |
+          echo "--- uname ---"; uname -a
+          echo "--- pwd ---"; pwd
+          echo "--- which node/npm/npx ---"
+          which node; which npm; which npx
+          echo "--- type -a ---"
+          type -a node; type -a npm; type -a npx
+          echo "--- node platform ---"
+          node -p "process.platform + ' ' + process.arch + ' ' + process.execPath"
+          echo "--- RUNNER_* env ---"
+          env | grep -E '^(RUNNER_|GITHUB_)' | sort
+          echo "--- PATH ---"
+          echo "$PATH" | tr ':' '\n'
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright browsers
