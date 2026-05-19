@@ -28,6 +28,7 @@ export function runContainers(dockerSetupInfo) {
 }
 
 async function runContainer(name, args) {
+  await execAsync(`docker rm -f ${name} >/dev/null 2>&1 || true`);
   await execAsync(`docker run -d --rm --name ${name} ${args}`);
 
   let healthStatus;

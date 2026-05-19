@@ -154,3 +154,6 @@ playwright/.cache/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+
+settings.local.json
