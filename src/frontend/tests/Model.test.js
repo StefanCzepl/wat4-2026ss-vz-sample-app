@@ -4,13 +4,13 @@ import DomUtils from "./utils/dom-utils.js";
 
 beforeAll(() => {
   jest.useFakeTimers();
-})
+});
 
 afterAll(() => {
   jest.useRealTimers();
 });
 
-test('Model notifies subscribers', async () => {
+test("Model notifies subscribers", async () => {
   // arrange
   const apiService = {
     getValue: jest.fn().mockResolvedValue(42),
